@@ -1,5 +1,7 @@
 ---
-title: "Dashboards"
+title: "Star Wars Dashboard"
+author: "Tallen Vidal"
+format: dashboard
 ---
 
 This is a Quarto website.
