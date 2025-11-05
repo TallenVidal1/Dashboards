@@ -18,7 +18,7 @@ penguins <- penguins_lter%>%
 
 Instructions: Make a dashboard with two rows. Row 1 should contain two graphs showing any penguins data you'd like. Row two, should contain a table (knitr:kable and select if you'd like to narrow your columns). Then customize your dashboard by adding colors, labels, and interactivity.
 
-\##
+## Row 1
 
 ```{r, echo=FALSE}
 
@@ -33,4 +33,13 @@ Instructions: Make a dashboard with two rows. Row 1 should contain two graphs sh
        y = "Number of Penguins")
  ggplotly(penguins_hist)
 
+```
+
+```{r, echo=FALSE}
+ggplot(data = penguins, aes(x = culmen_depth_mm, y = body_mass_g, color=species)) +
+  geom_point() +
+  theme_bw() +
+  scale_fill_viridis_d() +
+  labs(title = "Palmer Penguins, Culmen Depth(mm) vs Body Mass(g)",
+       subtitle = "3 penguin species observed on three islands in the Palmer Archipelago, Antarctica",)
 ```
