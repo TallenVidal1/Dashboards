@@ -1,13 +1,45 @@
 ---
 title: "Star Wars Dashboard"
 author: "Tallen Vidal"
-format: dashboard
+format: 
+  dashboard:
+    orientation: rows
 ---
 
-This is a Quarto website.
+```{r, echo = FALSE}
+library(tidycensus)
+library(plotly)
+library(dplyr)
+head(starwars)
+```
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Row 1
 
 ```{r}
-1 + 1
+p1 <- ggplot(data = starwars, aes(x = mass, y = height, text = name)) +
+  geom_point()
+
+ggplotly(p1)
+```
+
+## Row 2 {.tabset}
+
+```{r}
+#| title: Tab 1
+```
+
+```{r}
+#| title: Tab 2
+
+
+
+```
+
+# Page 2
+
+## Row 1
+
+```{r}
+
+
 ```

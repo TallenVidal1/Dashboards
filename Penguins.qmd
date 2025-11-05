@@ -1,0 +1,36 @@
+---
+title: "Penguins"
+author: "Tallen Vidal"
+format: dashboard
+---
+
+```{r, echo=FALSE}
+library(readr)
+library(janitor)
+library(plotly)
+library(tidyverse)
+penguins_lter <- read_csv("~/CS201_FA25/data/penguins_lter.csv")
+penguins <- penguins_lter%>%
+  clean_names()
+##View(penguins_lter)
+
+```
+
+Instructions: Make a dashboard with two rows. Row 1 should contain two graphs showing any penguins data you'd like. Row two, should contain a table (knitr:kable and select if you'd like to narrow your columns). Then customize your dashboard by adding colors, labels, and interactivity.
+
+\##
+
+```{r, echo=FALSE}
+
+#| fig width: 5
+ penguins_hist<-ggplot(data = penguins, aes(x = culmen_depth_mm, fill = species)) +
+  geom_histogram() +
+  theme_bw() + 
+  scale_fill_viridis_d() + # try adding option = "A", "C", "E", etc. These also have names! See documentation.
+  labs(title = "Palmer Penguins, Distribution of Culmen Depth",
+       subtitle = "3 penguin species observed on three islands in the Palmer Archipelago, Antarctica",
+       x = "Culmen Depth (mm)",
+       y = "Number of Penguins")
+ ggplotly(penguins_hist)
+
+```
