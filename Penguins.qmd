@@ -48,7 +48,7 @@ ggplot(data = penguins, aes(x = culmen_depth_mm, y = body_mass_g, color=species)
 
 ## Row 2
 
-```{r, echo=FALSE}
+```{r}
 knitr::kable(penguins)
 
 ```
