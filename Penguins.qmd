@@ -43,3 +43,10 @@ ggplot(data = penguins, aes(x = culmen_depth_mm, y = body_mass_g, color=species)
   labs(title = "Palmer Penguins, Culmen Depth(mm) vs Body Mass(g)",
        subtitle = "3 penguin species observed on three islands in the Palmer Archipelago, Antarctica",)
 ```
+
+## Row 2
+
+```{r, echo=FALSE}
+knitr::kable(penguins)
+
+```
