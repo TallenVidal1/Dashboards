@@ -1,7 +1,9 @@
 ---
 title: "Penguins"
 author: "Tallen Vidal"
-format: dashboard
+format:
+  dashboard: 
+    orientation: rows
 ---
 
 ```{r, echo=FALSE}
