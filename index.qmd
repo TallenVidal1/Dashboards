@@ -58,28 +58,48 @@ ggplotly(goal_4_histogram)
 ## Row 2 {.tabset}
 
 ```{r}
-world <- ne_countries(scale = "medium", returnclass = "sf")
-world <- world %>% 
-  select(name_long, iso_a3, geometry)
-colnames(sdr_data_clean)[which(colnames(sdr_data_clean) == "country_code_iso3")] <- "iso_a3"
-sdr_data_world_joined <- left_join(sdr_data_clean, world, by = "iso_a3")
-sdr_data_world_joined <- st_as_sf(sdr_data_world_joined)
-sdr_data_world_joined <- st_transform(sdr_data_world_joined, "+proj=longlat +datum=WGS84")
+sdr_data_normalized_scores <- sdr_data_clean %>% 
+  select(country, contains("normalized_score"))  
+
+sum(is.na(sdr_data_normalized_scores))
+sdr_data_normalized_scores_longer <- sdr_data_normalized_scores %>% 
+  pivot_longer(cols = !country)
+missing_data_by_country <- sdr_data_normalized_scores_longer %>%
+ group_by(country) %>%
+ miss_var_summary() %>% 
+ arrange(desc(pct_miss))
+
+completely_na_countries  <- missing_data_by_country$country[missing_data_by_country$pct_miss == 100]
+
+sdr_data_normalized_scores_no_na_countries <- sdr_data_normalized_scores %>% 
+  filter(!country %in% completely_na_countries)
+
+sdr_data_normalized_scores_less_na <- sdr_data_normalized_scores_no_na_countries %>%
+  select(where(~ sum(is.na(.))/length(.) <= 0.2))
+
+sdr_data_imputed <- missRanger(sdr_data_normalized_scores_less_na)
 ```
 
 ```{r}
-mytext <- paste(
-    "Country: ", sdr_data_world_joined$country,"<br/>", 
-    "Goal 41
-    Score: ", round(sdr_data_world_joined$goal_4_score, 2), 
-    sep="") %>%
-  lapply(htmltools::HTML)
+SDG_1_Indicators_Scatterplot<-ggplot(data = sdr_data_imputed, aes(x= normalized_score_sdg1_wpc, y = normalized_score_sdg1_lmicpov, color=country)) +
+  geom_point()+
+  theme_minimal() +
+  scale_fill_viridis_d() +
+  labs(title = "Distributions of SDG 1 Indicator Scores",
+       x = "World Petroleum Congress Score",
+       y = "Low-Middle Income Country Score",
+       fill = "Country")
 
-leaflet(sdr_data_world_joined) %>% 
-  addTiles()  %>% 
-  setView( lat=10, lng=0 , zoom=2) %>%
-  addPolygons(stroke = FALSE, fillOpacity = 0.5, smoothFactor = 0.5, color = ~colorQuantile("RdPu", goal_4_score)(goal_4_score), label = mytext)
-
+ggplotly(SDG_1_Indicators_Scatterplot)
 
 
 ```
+
+
+
+
+
+```{r}
+
+```
+
