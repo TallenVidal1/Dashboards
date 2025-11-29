@@ -1,5 +1,5 @@
 ---
-title: "Star Wars Dashboard"
+title: "SDG Analytics Dashboard"
 author: "Tallen Vidal"
 format: 
   dashboard:
