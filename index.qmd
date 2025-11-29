@@ -51,7 +51,7 @@ goal_1_histogram <- ggplot(sdr_data_clean, aes(x = goal_1_score, fill=regions_us
 ggplotly(goal_1_histogram)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, include=FALSE, message=FALSE}
 sdr_data_normalized_scores <- sdr_data_clean %>% 
   select(country, contains("normalized_score"))  
 
