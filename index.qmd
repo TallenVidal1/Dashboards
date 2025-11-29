@@ -36,14 +36,13 @@ sdr_data_clean <- sdr_data %>%
   clean_names()
 ```
 
-
 ## Row 1
 
 ```{r}
 goal_1_histogram <- ggplot(sdr_data_clean, aes(x = goal_1_score, fill=regions_used_for_the_sdr)) +
   geom_histogram() +
   theme_minimal() +
-  scale_fill_viridis_d(option="mako") +
+  scale_fill_viridis_d(option="viridis") +
   labs(title = "Distributions of SDG 1 Scores",
        x = "SDG 1 Score",
        y = "Number of Countries",
@@ -51,8 +50,6 @@ goal_1_histogram <- ggplot(sdr_data_clean, aes(x = goal_1_score, fill=regions_us
 
 ggplotly(goal_1_histogram)
 ```
-
-## Row 2 {.tabset}
 
 ```{r, echo = FALSE}
 sdr_data_normalized_scores <- sdr_data_clean %>% 
@@ -92,11 +89,8 @@ ggplotly(SDG_1_Indicators_Scatterplot)
 
 ```
 
-
-
-
+## Row 2
 
 ```{r}
 
 ```
-
