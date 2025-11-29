@@ -43,21 +43,21 @@ install.packages("rnaturalearthdata")
 ## Row 1
 
 ```{r}
-goal_4_histogram <- ggplot(sdr_data_clean, aes(x = goal_4_score, fill=regions_used_for_the_sdr)) +
+goal_1_histogram <- ggplot(sdr_data_clean, aes(x = goal_1_score, fill=regions_used_for_the_sdr)) +
   geom_histogram() +
   theme_minimal() +
   scale_fill_viridis_d(option="mako") +
-  labs(title = "Distributions of SDG 4 Scores",
-       x = "SDG 4 Score",
+  labs(title = "Distributions of SDG 1 Scores",
+       x = "SDG 1 Score",
        y = "Number of Countries",
        fill = "Region")
 
-ggplotly(goal_4_histogram)
+ggplotly(goal_1_histogram)
 ```
 
 ## Row 2 {.tabset}
 
-```{r}
+```{r, echo =}
 sdr_data_normalized_scores <- sdr_data_clean %>% 
   select(country, contains("normalized_score"))  
 
