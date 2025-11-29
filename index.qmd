@@ -29,7 +29,7 @@ library(pdp)
 
 ```
 
-```{r}
+```{, echo = FALSE}
 sdr_data <- read_csv(here("data/SDR-2023-Data.csv"))
 
 sdr_data_clean <- sdr_data %>% 
