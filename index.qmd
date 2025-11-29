@@ -83,12 +83,3 @@ leaflet(sdr_data_world_joined) %>%
 
 
 ```
-
-# Page 2
-
-## Row 1
-
-```{r}
-
-
-```
