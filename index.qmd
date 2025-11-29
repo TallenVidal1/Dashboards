@@ -29,7 +29,7 @@ library(pdp)
 
 ```
 
-```{, echo = FALSE}
+```{r, echo = FALSE}
 sdr_data <- read_csv(here("data/SDR-2023-Data.csv"))
 
 sdr_data_clean <- sdr_data %>% 
@@ -54,7 +54,7 @@ ggplotly(goal_1_histogram)
 
 ## Row 2 {.tabset}
 
-```{r, echo =}
+```{r, echo = FALSE}
 sdr_data_normalized_scores <- sdr_data_clean %>% 
   select(country, contains("normalized_score"))  
 
