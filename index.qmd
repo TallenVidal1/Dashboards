@@ -36,9 +36,6 @@ sdr_data_clean <- sdr_data %>%
   clean_names()
 ```
 
-```{r}
-install.packages("rnaturalearthdata")
-```
 
 ## Row 1
 
