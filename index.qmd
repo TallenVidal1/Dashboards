@@ -8,28 +8,77 @@ format:
 
 ```{r, echo = FALSE}
 library(tidycensus)
+library(tidyverse)
 library(plotly)
 library(dplyr)
-head(starwars)
+library(here)
+library(janitor)
+library(plotly)
+library(rnaturalearth)
+library(leaflet)
+library(sf)
+library(vembedr)
+library(naniar) # analyzes missing data
+library(ggcorrplot)
+library(ggpubr)
+library(cluster) 
+library(randomForest) # runs random forest algorithm
+library(missRanger) # imputes data through with random forest method
+library(factoextra) # visualizes clusters
+library(pdp)
+
+```
+
+```{r}
+sdr_data <- read_csv(here("data/SDR-2023-Data.csv"))
+
+sdr_data_clean <- sdr_data %>% 
+  clean_names()
+```
+
+```{r}
+install.packages("rnaturalearthdata")
 ```
 
 ## Row 1
 
 ```{r}
-p1 <- ggplot(data = starwars, aes(x = mass, y = height, text = name)) +
-  geom_point()
+goal_4_histogram <- ggplot(sdr_data_clean, aes(x = goal_4_score, fill=regions_used_for_the_sdr)) +
+  geom_histogram() +
+  theme_minimal() +
+  scale_fill_viridis_d(option="mako") +
+  labs(title = "Distributions of SDG 4 Scores",
+       x = "SDG 4 Score",
+       y = "Number of Countries",
+       fill = "Region")
 
-ggplotly(p1)
+ggplotly(goal_4_histogram)
 ```
 
 ## Row 2 {.tabset}
 
 ```{r}
-#| title: Tab 1
+world <- ne_countries(scale = "medium", returnclass = "sf")
+world <- world %>% 
+  select(name_long, iso_a3, geometry)
+colnames(sdr_data_clean)[which(colnames(sdr_data_clean) == "country_code_iso3")] <- "iso_a3"
+sdr_data_world_joined <- left_join(sdr_data_clean, world, by = "iso_a3")
+sdr_data_world_joined <- st_as_sf(sdr_data_world_joined)
+sdr_data_world_joined <- st_transform(sdr_data_world_joined, "+proj=longlat +datum=WGS84")
 ```
 
 ```{r}
-#| title: Tab 2
+mytext <- paste(
+    "Country: ", sdr_data_world_joined$country,"<br/>", 
+    "Goal 41
+    Score: ", round(sdr_data_world_joined$goal_4_score, 2), 
+    sep="") %>%
+  lapply(htmltools::HTML)
+
+leaflet(sdr_data_world_joined) %>% 
+  addTiles()  %>% 
+  setView( lat=10, lng=0 , zoom=2) %>%
+  addPolygons(stroke = FALSE, fillOpacity = 0.5, smoothFactor = 0.5, color = ~colorQuantile("RdPu", goal_4_score)(goal_4_score), label = mytext)
 
 
 
