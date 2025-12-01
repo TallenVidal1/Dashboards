@@ -90,8 +90,6 @@ ggplot(sdr_data_imputed, aes(x = normalized_score_sdg1_wpc,
        y = "Low-Middle Income Country Score")
 ```
 
-## Row 2
-
 ```{r}
 SDG_1_Indicators_Scatterplot<-ggplot(data = sdr_data_imputed, aes(x= normalized_score_sdg1_wpc, y = normalized_score_sdg1_lmicpov, color=country)) +
   geom_point()+
