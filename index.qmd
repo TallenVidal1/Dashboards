@@ -6,7 +6,7 @@ format:
     orientation: rows
 ---
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
 library(tidycensus)
 library(tidyverse)
 library(plotly)
