@@ -79,6 +79,20 @@ sdr_data_imputed <- missRanger(sdr_data_normalized_scores_less_na)
 ```
 
 ```{r}
+ggplot(sdr_data_imputed, aes(x = normalized_score_sdg1_wpc,
+                     y = normalized_score_sdg1_lmicpov)) +
+  geom_point() +
+  geom_smooth() +
+  stat_cor() +
+  theme_minimal()+
+   labs(title = "Linear Regression Between SDG 1 Indicators",
+       x = "World Petroeum Congress Score",
+       y = "Low-Middle Income Country Score")
+```
+
+## Row 2
+
+```{r}
 SDG_1_Indicators_Scatterplot<-ggplot(data = sdr_data_imputed, aes(x= normalized_score_sdg1_wpc, y = normalized_score_sdg1_lmicpov, color=country)) +
   geom_point()+
   theme_minimal() +
@@ -91,16 +105,4 @@ SDG_1_Indicators_Scatterplot<-ggplot(data = sdr_data_imputed, aes(x= normalized_
 ggplotly(SDG_1_Indicators_Scatterplot)
 
 
-```
-
-```{r}
-ggplot(sdr_data_imputed, aes(x = normalized_score_sdg1_wpc,
-                     y = normalized_score_sdg1_lmicpov)) +
-  geom_point() +
-  geom_smooth() +
-  stat_cor() +
-  theme_minimal()+
-   labs(title = "Linear Regression Between SDG 1 Indicators",
-       x = "World Petroeum Congress Score",
-       y = "Low-Middle Income Country Score")
 ```
