@@ -36,6 +36,10 @@ sdr_data_clean <- sdr_data %>%
   clean_names()
 ```
 
+# Story of the First SDG
+
+The 17 Sustainability Development Goals (SDGs) are 17
+
 ## Row 1
 
 ```{r}

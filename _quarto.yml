@@ -10,6 +10,10 @@ website:
         text: Home
       - about.qmd
       - Penguins.qmd
+    right: 
+      - icon: github
+      - href: https://github.com/TallenVidal1
+      - target: blank
 
 format:
   html:
