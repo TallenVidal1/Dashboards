@@ -29,6 +29,8 @@ library(pdp)
 
 ```
 
+Data from <https://dashboards.sdgindex.org/>
+
 ```{r, echo = FALSE}
 sdr_data <- read_csv(here("data/SDR-2023-Data.csv"))
 
@@ -101,9 +103,4 @@ ggplot(sdr_data_imputed, aes(x = normalized_score_sdg1_wpc,
    labs(title = "Linear Regression Between SDG 1 Indicators",
        x = "World Petroeum Congress Score",
        y = "Low-Middle Income Country Score")
-```
-
-## Row 2
-
-```{}
 ```
