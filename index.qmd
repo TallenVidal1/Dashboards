@@ -36,9 +36,7 @@ sdr_data_clean <- sdr_data %>%
   clean_names()
 ```
 
-# Story of the First SDG
-
-The 17 Sustainability Development Goals (SDGs) are 17
+The 17 Sustainability Development Goals (SDGs) are 17 goals adopted by the United Nations in 2015 that push for the development of various social, economic, and political infrastructures that are detrimental to the well-being of the world. The original timeline for achieving the SDGs was by 2030. The following dashboard gives us a small peak into what the 2023 data looks like regarding to the first SDG: "No Poverty".
 
 ## Row 1
 

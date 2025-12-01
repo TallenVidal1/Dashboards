@@ -11,8 +11,8 @@ website:
       - about.qmd
       - Penguins.qmd
     right: 
-      - icon: github
-        href: https://github.com/TallenVidal1
+      - text: Main Site
+        href: https://tallenvidal1.github.io/
         target: blank
 
 format:
