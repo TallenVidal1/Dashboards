@@ -105,4 +105,6 @@ ggplotly(SDG_1_Indicators_Scatterplot)
 
 ```
 
+## Row 2
+
 Overall the progress towards completing SDG 1 was quite substantial; however according to the 2023 data there is much more work that must be done before the UN can consider this SDG to be achieved/completed.
